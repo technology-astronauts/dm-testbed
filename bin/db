@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require 'clamp'
+require 'pathname'
+
+$:.unshift Pathname.new(__FILE__).dirname.expand_path.join('..', 'lib').to_s
+
+class App < Clamp::Command
+  subcommand 'create', <<-DESC do
+      (re)creates the database schema from scratch
+    DESC
+    
+    def execute
+      require 'configuration'
+      require 'db/models'
+
+      DataMapper.auto_migrate!
+    end  
+  end
+  subcommand 'migrate', <<-DESC do
+      incrementally upgrades the db
+    DESC
+    
+    def execute
+      require 'configuration'
+      require 'db/models'
+
+      DataMapper.auto_upgrade!
+    end  
+  end
+end
+
+App.run
