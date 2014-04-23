@@ -18,5 +18,11 @@ describe 'issue #219' do
     it 'should yield [1,nil,nil] when starting with user posts' do
       (user.posts | DB::I219::Post.all).collect { |post| post.user_id }.should == [user.id,nil,nil]     
     end
+    it 'should still behave properly with respect to inversely setting ids' do
+      p4 = DB::I219::Post.create(name: 'p4')
+      user.posts << p4
+
+      p4.user_id.should == user.id
+    end
   end
 end

@@ -7,7 +7,7 @@ gem 'text-highlight'
 
 # Database
 group :database do
-  gem 'dm-core', '>= 1.3.0.beta'
+  gem 'dm-core', path: '/Users/kschiess/git/3rd/datamapper/dm-core'
   gem 'dm-aggregates', '>= 1.3.0.beta'
   gem 'dm-constraints', '>= 1.3.0.beta'
   gem 'dm-migrations', '>= 1.3.0.beta'
